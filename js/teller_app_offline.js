@@ -34,7 +34,7 @@ function submitOffline() {
 
             $("#transaction-table-offline tbody").empty();
             total = parseFloat(0);
-            $("#total").html(total);
+            $("#totalOffline").html(total);
         }
     } else {
         alert("No phone number found.");

@@ -53,12 +53,12 @@ function addToTableOffline() {
     if (bcode === "" || name === "" || price === "") {
         alert("Please make sure you have filled the form completely.");
     } else {
-        $("#transaction-table tbody").append(
+        $("#transaction-table-offline tbody").append(
             "<tr>" +
-                "<td>" + name + "</td>" +
-                "<td>" + bcode + "</td>" +
-                "<td>" + price + "</td>" +
-                "</tr>"
+            "<td>" + name + "</td>" +
+            "<td>" + bcode + "</td>" +
+            "<td>" + price + "</td>" +
+            "</tr>"
         );
 
         if (scanned_products.length > 0) {
@@ -69,6 +69,9 @@ function addToTableOffline() {
 
         total = parseFloat(total) + parseFloat(price);
         $("#totalOffline").html(total);
+        $("barcodeInputOffline").val("");
+        $("#nameInputOffline").val("");
+        $("#priceInputOffline").val("");
 
     }
 }
@@ -76,7 +79,10 @@ function addToTableOffline() {
 function sendRequest(u) {
     "use strict";
     var obj, result;
-    obj = $.ajax({url: u, async: false});
+    obj = $.ajax({
+        url: u,
+        async: false
+    });
     result = $.parseJSON(obj.responseText);
     return result;
 }
@@ -85,4 +91,3 @@ function testOffline() {
     "use strict";
     $("#barcodeInputOffline").val(1234243);
 }
-

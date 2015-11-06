@@ -106,6 +106,7 @@ function getProducts() {
     });
     if (obj.status !== 200) {
         alert('not connected');
+        window.location = "offline.html";
     } else {
         alert('connected');
         result = $.parseJSON(obj.responseText);

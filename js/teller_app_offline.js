@@ -47,7 +47,7 @@ function addToTableOffline() {
 
     var bcode, name, price;
 
-    bcode = $("barcodeInputOffline").val();
+    bcode = $("#barcodeInputOffline").val();
     name = $("#nameInputOffline").val();
     price = $("#priceInputOffline").val();
     if (bcode === "" || name === "" || price === "") {

@@ -30,10 +30,10 @@ function submitOffline() {
 
             json_trans = '{"phoneNumber":"' + phoneNumber + '","total":' + total + ',"productBarcode":[' + scanned_products + ']}';
 
-            stored = localStorage.getItem("trans");
-            if(stored != null){
-                json_trans = stored + ", " + json_trans;
-            }
+//            stored = localStorage.getItem("trans");
+//            if(stored != null){
+//                json_trans = stored + ", " + json_trans;
+//            }
 
 
             localStorage.setItem("trans", json_trans);

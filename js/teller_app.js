@@ -6,6 +6,7 @@ var products;
 var server = "http://cs.ashesi.edu.gh/~csashesi/class2016/sheamus-yebisi/mobile_web/POS/php/";
 var scanned_products = "";
 var total = 0;
+var netStatus=0;
 
 
 $(document).ready(function () {
@@ -23,12 +24,14 @@ $(document).ready(function () {
 function onOffline() {
     // Handle the offline event
     Materialize.toast("Offline",2000);
+    netStatus = 0;
 }
 
 
 function onOnline() {
     // Handle the online event
     Materialize.toast("Online",2000);
+    netStatus=1;
 }
 
 $(function () {
@@ -59,9 +62,15 @@ function submit() {
 
             URL = 'http://cs.ashesi.edu.gh/~csashesi/class2016/sheamus-yebisi/mobile_web/POS/php/teller_function.php?cmd=1&trans=' + json_trans;
 
+            if(netStatus == 1){
+
             response = sendRequest(URL);
 
             alert(response.message);
+            }else if(netStatus==0){
+                localStorage.setItem("trans", json_trans);
+                alert("Saved");
+            }
             $("#transaction-table tbody").empty();
             total = parseFloat(0);
             $("#total").html(total);

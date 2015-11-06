@@ -12,11 +12,10 @@ var netStatus=0;
 $(document).ready(function () {
     "use strict";
 
-    getProducts();
-
-    sync();
     document.addEventListener("offline", onOffline, false);
     document.addEventListener("online", onOnline, false);
+
+    getProducts();
 });
 
 
@@ -32,6 +31,7 @@ function onOnline() {
     // Handle the online event
     Materialize.toast("Online",2000);
     netStatus=1;
+    sync();
 }
 
 $(function () {

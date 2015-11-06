@@ -32,7 +32,7 @@ function submitOffline() {
 
             localStorage.setItem("trans", json_trans);
 
-            $("#transaction-table tbody").empty();
+            $("#transaction-table-offline tbody").empty();
             total = parseFloat(0);
             $("#total").html(total);
         }

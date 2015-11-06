@@ -10,11 +10,10 @@ var total = 0;
 
 $(document).ready(function () {
     "use strict";
-//    alert(test_json);
-    getProducts();
-//    sync();
 
-//    alert(products[9782342].PRODUCT_ID);
+    getProducts();
+
+    //    sync();
 });
 
 $(function () {
@@ -22,35 +21,15 @@ $(function () {
     $("#scanBarcode").click(function () {
         cordova.plugins.barcodeScanner.scan(
             function (result) {
-    //            alert("We got a barcode\n" +
-    //                    "Result: " + result.text + "\n" +
-    //                    "Format: " + result.format + "\n" +
-    //                    "Cancelled: " + result.cancelled);
                 addToTable(result.text);
             },
             function (error) {
-    //            alert("Scanning failed: " + error);
                 $("#result").val(error);
             }
         );
     });
 });
 
-//$(function () {
-//    "use strict";
-//    $("#submit").click(function () {
-//        if (scanned_products.length < 1) {
-//            var json_trans, URL, response;
-//            json_trans = '{"phoneNumber":"","total":' + total + ',"productBarcode":[' + scanned_products + ']}';
-//
-//            URL = server + 'teller.php?cmd=1&trans=' + json_trans;
-//
-//            response = sendRequest(URL);
-//
-//            alert(response.message);
-//        }
-//    });
-//});
 
 function submit() {
     "use strict";
@@ -88,10 +67,10 @@ function addToTable(barcode) {
     price = products[barcode].PRODUCT_PRICE;
     $("#transaction-table tbody").append(
         "<tr>" +
-            "<td>" + name + "</td>" +
-            "<td>" + bcode + "</td>" +
-            "<td>" + price + "</td>" +
-            "</tr>"
+        "<td>" + name + "</td>" +
+        "<td>" + bcode + "</td>" +
+        "<td>" + price + "</td>" +
+        "</tr>"
     );
 
     if (scanned_products.length > 0) {
@@ -110,7 +89,10 @@ function addToTable(barcode) {
 function sendRequest(u) {
     "use strict";
     var obj, result;
-    obj = $.ajax({url: u, async: false});
+    obj = $.ajax({
+        url: u,
+        async: false
+    });
     result = $.parseJSON(obj.responseText);
     return result;
 }
@@ -118,18 +100,19 @@ function sendRequest(u) {
 function getProducts() {
     "use strict";
     var obj, result;
-    obj = $.ajax({url: 'http://cs.ashesi.edu.gh/~csashesi/class2016/sheamus-yebisi/mobile_web/POS/php/teller_function.php?cmd=0', async: false});
+    obj = $.ajax({
+        url: 'http://cs.ashesi.edu.gh/~csashesi/class2016/sheamus-yebisi/mobile_web/POS/php/teller_function.php?cmd=0',
+        async: false
+    });
     if (obj.status !== 200) {
         alert('not connected');
-        $.mobile.changePage("#offline", {transition: "slideup", changeHash: false});
     } else {
         alert('connected');
         result = $.parseJSON(obj.responseText);
-        //var result = sendRequest('http://localhost/mobile_web/POS/php/teller_function.php?cmd=0');
         products = result.products;
     }
 }
-
+/*
 function sync() {
     "use strict";
     var transaction, URL;
@@ -143,30 +126,5 @@ function sync() {
 
         window.localStorage.clear();
     }
-
-
 }
-/*
-function sync() {
-      fs.root.getFile('trans.txt', {}, function(fileEntry) {
-
-    // Get a File object representing the file,
-    // then use FileReader to read its contents.
-    fileEntry.file(function(file) {
-       var reader = new FileReader();
-
-       reader.onloadend = function(e) {
-
-         var transaction = this.result;
-           URL = 'http://cs.ashesi.edu.gh/~csashesi/class2016/sheamus-yebisi/mobile_web/POS/php/teller_function.php?cmd=1&trans=' + transaction;
-
-       };
-
-       reader.readAsText(file);
-    }, errorHandler);
-
-  }, errorHandler);
-
-}
-}
-
+*/

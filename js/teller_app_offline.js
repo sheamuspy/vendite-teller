@@ -1,7 +1,5 @@
 /*global document, $, jQuery, sendRequest, cordova, addToTable, alert, getProducts, externalDataDirectory */
 
-var test_json = '{"status":0, "products":{"9782342":{"PRODUCT_ID":"4","PRODUCT_NAME":"ideal milk","PRODUCT_BARCODE":"9782342","PRODUCT_PRICE":"2"},"6433949":{"PRODUCT_ID":"5","PRODUCT_NAME":"kalyppo","PRODUCT_BARCODE":"6433949","PRODUCT_PRICE":"1.4"}}}';
-
 var products;
 var server = "http://cs.ashesi.edu.gh/~csashesi/class2016/sheamus-yebisi/mobile_web/POS/php/";
 var scanned_products = "";
@@ -12,14 +10,9 @@ $(function () {
     $("#scanBarcodeOffline").click(function () {
         cordova.plugins.barcodeScanner.scan(
             function (result) {
-    //            alert("We got a barcode\n" +
-    //                    "Result: " + result.text + "\n" +
-    //                    "Format: " + result.format + "\n" +
-    //                    "Cancelled: " + result.cancelled);
                 $("#barcodeInputOffline").val(result.text);
             },
             function (error) {
-    //            alert("Scanning failed: " + error);
                 $("#barcodeInputOffline").val(error);
             }
         );
@@ -57,7 +50,7 @@ function addToTableOffline() {
     bcode = $("barcodeInputOffline").val();
     name = $("#nameInputOffline").val();
     price = $("#priceInputOffline").val();
-    if (bcode.length < 1 || name.length < 1 || price.length < 1) {
+    if (bcode === "" || name === "" || price === "") {
         alert("Please make sure you have filled the form completely.");
     } else {
         $("#transaction-table tbody").append(

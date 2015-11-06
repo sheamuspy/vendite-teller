@@ -13,7 +13,7 @@ $(document).ready(function () {
 
     getProducts();
 
-    //    sync();
+    sync();
 });
 
 $(function () {
@@ -112,7 +112,7 @@ function getProducts() {
         products = result.products;
     }
 }
-/*
+
 function sync() {
     "use strict";
     var transaction, URL;
@@ -124,7 +124,7 @@ function sync() {
         URL = 'http://cs.ashesi.edu.gh/~csashesi/class2016/sheamus-yebisi/mobile_web/POS/php/teller_function.php?cmd=1&trans=' + transaction;
         sendRequest(URL);
 
-        window.localStorage.clear();
+        localStorage.clear();
     }
 }
-*/
+

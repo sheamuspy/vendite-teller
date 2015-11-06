@@ -18,6 +18,8 @@
         <gap:plugin name="org.apache.cordova.file"/>
         <preference name="AndroidPersistentFileLocation" value="Internal" />
 
+        <gap:plugin name="cordova-plugin-network-information"/>
+
     <!-- versionCode is optional and Android only -->
 
     <name>Vendite-teller</name>

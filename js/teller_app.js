@@ -14,7 +14,22 @@ $(document).ready(function () {
     getProducts();
 
     sync();
+    document.addEventListener("offline", onOffline, false);
+    document.addEventListener("online", onOnline, false);
 });
+
+
+
+function onOffline() {
+    // Handle the offline event
+    Materialize.toast("Offline",2000);
+}
+
+
+function onOnline() {
+    // Handle the online event
+    Materialize.toast("Online",2000);
+}
 
 $(function () {
     "use strict";

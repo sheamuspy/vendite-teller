@@ -21,7 +21,7 @@ $(function () {
 
 function submitOffline() {
     "use strict";
-    var json_trans, URL, response, phoneNumber, transactioToStore;
+    var json_trans, URL, response, phoneNumber, transactioToStore, stored;
 
     phoneNumber = $("#phoneNumber").val();
 
@@ -29,6 +29,12 @@ function submitOffline() {
         if (scanned_products.length > 0) {
 
             json_trans = '{"phoneNumber":"' + phoneNumber + '","total":' + total + ',"productBarcode":[' + scanned_products + ']}';
+
+            stored = localStorage.getItem("trans");
+            if(stored != null){
+                json_trans = stored + ", " + json_trans;
+            }
+
 
             localStorage.setItem("trans", json_trans);
 

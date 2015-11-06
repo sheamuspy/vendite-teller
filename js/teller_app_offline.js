@@ -69,7 +69,7 @@ function addToTableOffline() {
 
         total = parseFloat(total) + parseFloat(price);
         $("#totalOffline").html(total);
-        $("barcodeInputOffline").val("");
+        $("#barcodeInputOffline").val("");
         $("#nameInputOffline").val("");
         $("#priceInputOffline").val("");
 
